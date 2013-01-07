@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSpy v2010 rel. 3 (x64) (http://www.altova.com) by Ryan Clark (private) -->
+<xs:schema xmlns:aasg="http://stategeothermaldata.org/uri-gin/aasg/xmlschema/volcanicvent/1.4" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:gmlsf="http://www.opengis.net/gmlsf" targetNamespace="http://stategeothermaldata.org/uri-gin/aasg/xmlschema/volcanicvent/1.4" elementFormDefault="qualified" version="1.04">
+	<xs:import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd"/>
+	<xs:import namespace="http://www.opengis.net/gmlsf" schemaLocation="http://schemas.opengis.net/gml/3.1.1/profiles/gmlsfProfile/1.0.0/gmlsfLevels.xsd"/>
+	<xs:annotation>
+		<!-- This XSD document, including XML schema, indicates the content requested for AASG geothermal data interoperable web services for description of basic volcanic vent data. In the geothermal data system, volcanic vent features are one of the sampling feature services that are used as a method to discover potential resources. Each feature should have a unique FeatureURI.-->
+		<!-- Schema produced by Celia Coleman 2012-03-07.-->
+		<xs:appinfo source="http://schemas.opengis.net/gml/3.1.1/profiles/gmlsfProfile/1.0.0/gmlsfLevels.xsd">
+			<gmlsf:ComplianceLevel>0</gmlsf:ComplianceLevel>
+			<gmlsf:GMLProfileSchema>
+http://schemas.opengis.net/gml/3.1.1/profiles/gmlsfProfile/1.0.0/gmlsf.xsd </gmlsf:GMLProfileSchema>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:element name="VolcanicVent" type="aasg:VolcanicVentType" substitutionGroup="gml:_Feature"/>
+	<xs:complexType name="VolcanicVentType">
+		<xs:complexContent>
+			<xs:extension base="gml:AbstractFeatureType">
+				<xs:sequence>
+					<xs:element name="OBJECTID" type="xs:int" minOccurs="0"/>
+					<xs:element name="FeatureURI">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="255"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="VolcVentName" type="xs:string" minOccurs="0"/>
+					<xs:element name="Label" type="xs:string" minOccurs="0"/>
+					<xs:element name="MapLabel" type="xs:string" minOccurs="0"/>
+					<xs:element name="Description" type="xs:string" minOccurs="0"/>
+					<xs:element name="FeatureType" type="xs:string"/>
+					<xs:element name="VolcanicGroup" type="xs:string" minOccurs="0"/>
+					<xs:element name="UTM_E" type="xs:double" minOccurs="0"/>
+					<xs:element name="UTM_N" type="xs:double" minOccurs="0"/>
+					<xs:element name="UTMDatumZone" type="xs:string" minOccurs="0"/>
+					<xs:element name="LatDegree" type="xs:double"/>
+					<xs:element name="LongDegree" type="xs:double"/>
+					<xs:element name="SRS" type="xs:string"/>
+					<xs:element name="LocationUncertaintyStatement" type="xs:string"/>
+					<xs:element name="County" type="xs:string" minOccurs="0"/>
+					<xs:element name="State" type="xs:string" minOccurs="0"/>
+					<xs:element name="LocationKeyword" type="xs:string" minOccurs="0"/>
+					<xs:element name="VentElevation" type="xs:double"/>
+					<xs:element name="ElevationUOM" type="xs:string"/>
+					<xs:element name="RelatedFeature" type="xs:string" minOccurs="0"/>
+					<xs:element name="GeologicHistory" type="xs:string"/>
+					<xs:element name="YoungestAge" type="xs:string" minOccurs="0"/>
+					<xs:element name="OldestAge" type="xs:string" minOccurs="0"/>
+					<xs:element name="YoungestRadiometricAge_Ma" type="xs:string" minOccurs="0"/>
+					<xs:element name="OldestRadiometricAge_Ma" type="xs:string" minOccurs="0"/>
+					<xs:element name="AgeUncertainty_Ma" type="xs:double" minOccurs="0"/>
+					<xs:element name="AgeSource" type="xs:string" minOccurs="0"/>
+					<xs:element name="GeologicUnit" type="xs:string" minOccurs="0"/>
+					<xs:element name="MaterialComposition" type="xs:string" minOccurs="0"/>
+					<xs:element name="FlowType" type="xs:string" minOccurs="0"/>
+					<xs:element name="Notes" type="xs:string" minOccurs="0"/>
+					<xs:element name="Source" type="xs:string"/>
+					<xs:element name="Shape" type="gml:PointPropertyType"/>
+					<xs:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>
