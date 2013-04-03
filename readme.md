@@ -1,0 +1,5 @@
+This repository contains document artifacts for an inforamtion exchange for volcanic vent observations. The artifacts include an Excel Workbook that defines and documents the content model, and an XML schema that implements the model.
+
+This spreadsheet indicates the content requested for geothermal data compiled from volcanic vent data. The columns in this spreadsheet will be the xml elements in a volcanic vent features. This simple content model is intended to identify recently active volcanic vents that may indicate areas of active hydrothermal systems. Detailed geophysical or geodetic information related to active magma movement and prediction of eruptive activity are out of scope. Such observation may be linked to the vent features for use cases that required more in depth information.  The related resource field may be used to provide URIs linking the vent to other such related observations or features.
+
+Services are currently deployed using the tagged 1.4 version of this information exchange.
