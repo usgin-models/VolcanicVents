@@ -4,8 +4,8 @@
 	<xs:import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd"/>
 	<xs:import namespace="http://www.opengis.net/gmlsf" schemaLocation="http://schemas.opengis.net/gml/3.1.1/profiles/gmlsfProfile/1.0.0/gmlsfLevels.xsd"/>
 	<xs:annotation>
-		<!-- This XSD document, including XML schema, indicates the content requested for AASG geothermal data interoperable web services for description of basic volcanic vent data. In the geothermal data system, volcanic vent features are one of the sampling feature services that are used as a method to discover potential resources. Each feature should have a unique FeatureURI.-->
-		<!-- Schema produced by Celia Coleman 2012-03-07.-->
+		<!--This XSD document, including XML schema, indicates the content requested for AASG geothermal data interoperable web services for description of basic volcanic vent data. In the geothermal data system, volcanic vent features are one of the sampling feature services that are used as a method to discover potential resources. Each feature should have a unique FeatureURI.-->
+		<!--Annotated version 1.4.1. Schema produced by Celia Coleman 2012-03-07. Field Description annotations standardized 2013-08-22 by Esty Pape, AZGS. -->
 		<xs:appinfo source="http://schemas.opengis.net/gml/3.1.1/profiles/gmlsfProfile/1.0.0/gmlsfLevels.xsd">
 			<gmlsf:ComplianceLevel>0</gmlsf:ComplianceLevel>
 			<gmlsf:GMLProfileSchema>
@@ -17,47 +17,181 @@ http://schemas.opengis.net/gml/3.1.1/profiles/gmlsfProfile/1.0.0/gmlsf.xsd </gml
 		<xs:complexContent>
 			<xs:extension base="gml:AbstractFeatureType">
 				<xs:sequence>
-					<xs:element name="OBJECTID" type="xs:int" minOccurs="0"/>
+					<xs:element name="OBJECTID" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Integer record count, added by ArcGIS servers during service deployment; not required but cannot be removed when deploying from ArcGIS feature class. Not user maintained, so this element appears in XML implementation but not in the Content Model Template.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 					<xs:element name="FeatureURI">
+						<xs:annotation>
+							<xs:documentation>Unique identifier for the volcanic vent described by the elements in this table. Ideally, the identifier is an http URI that will dereference to a known, useful representation of the feature. This identifier will be used to cross reference the sample to other information related to this feature.</xs:documentation>
+						</xs:annotation>
 						<xs:simpleType>
 							<xs:restriction base="xs:string">
 								<xs:maxLength value="255"/>
 							</xs:restriction>
 						</xs:simpleType>
 					</xs:element>
-					<xs:element name="VolcVentName" type="xs:string" minOccurs="0"/>
-					<xs:element name="Label" type="xs:string" minOccurs="0"/>
-					<xs:element name="MapLabel" type="xs:string" minOccurs="0"/>
-					<xs:element name="Description" type="xs:string" minOccurs="0"/>
-					<xs:element name="FeatureType" type="xs:string"/>
-					<xs:element name="VolcanicGroup" type="xs:string" minOccurs="0"/>
-					<xs:element name="UTM_E" type="xs:double" minOccurs="0"/>
-					<xs:element name="UTM_N" type="xs:double" minOccurs="0"/>
-					<xs:element name="UTMDatumZone" type="xs:string" minOccurs="0"/>
-					<xs:element name="LatDegree" type="xs:double"/>
-					<xs:element name="LongDegree" type="xs:double"/>
-					<xs:element name="SRS" type="xs:string"/>
-					<xs:element name="LocationUncertaintyStatement" type="xs:string"/>
-					<xs:element name="County" type="xs:string" minOccurs="0"/>
-					<xs:element name="State" type="xs:string" minOccurs="0"/>
-					<xs:element name="LocationKeyword" type="xs:string" minOccurs="0"/>
-					<xs:element name="VentElevation" type="xs:double"/>
-					<xs:element name="ElevationUOM" type="xs:string"/>
-					<xs:element name="RelatedFeature" type="xs:string" minOccurs="0"/>
-					<xs:element name="GeologicHistory" type="xs:string"/>
-					<xs:element name="YoungestAge" type="xs:string" minOccurs="0"/>
-					<xs:element name="OldestAge" type="xs:string" minOccurs="0"/>
-					<xs:element name="YoungestRadiometricAge_Ma" type="xs:string" minOccurs="0"/>
-					<xs:element name="OldestRadiometricAge_Ma" type="xs:string" minOccurs="0"/>
-					<xs:element name="AgeUncertainty_Ma" type="xs:double" minOccurs="0"/>
-					<xs:element name="AgeSource" type="xs:string" minOccurs="0"/>
-					<xs:element name="GeologicUnit" type="xs:string" minOccurs="0"/>
-					<xs:element name="MaterialComposition" type="xs:string" minOccurs="0"/>
-					<xs:element name="FlowType" type="xs:string" minOccurs="0"/>
-					<xs:element name="Notes" type="xs:string" minOccurs="0"/>
-					<xs:element name="Source" type="xs:string"/>
-					<xs:element name="Shape" type="gml:PointPropertyType"/>
-					<xs:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="VolcVentName" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Common or human-readable name by which the feature is known. Recommend using only web-safe characters (a-z A-Z 0-9 _-.) in the name. Be consistent in the naming convention used within any given dataset.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Label" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Short text string for labeling the feature on maps. Can be the same as feature name. A label may be an OtherLocationName, OtherID or the Name or some combination.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="MapLabel" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Short text string for labeling the feature on maps. Can be the same as feature name. A label may be an OtherLocationName, OtherID or the Name or some combination.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Description" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Free text field for any additional observations or other information regarding the feature, any special considerations with this instance (size, weight, quality, lithology, locality, etc).</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="FeatureType" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Type of Volcanic Vent feature: cone; tuff cone; dome; vent; fissure; shield; remnant stratovolcano; remnant shield volcano; maar; stratovolcano; tuya; monogenetic cone; remnant cone ; remnant dome; resurgent dome.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="VolcanicGroup" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Name of volcanic Group – used if the vent is part of a grouping of volcanoes. E.g. “Wrangells” or “Cook Inlet”.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="UTM_E" type="xs:double" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>UTM easting coordinate as decimal number.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="UTM_N" type="xs:double" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>UTM northing coordinate as decimal number.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="UTMDatumZone" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>The datum and UTM zone for the reported coordinates. Datum for most locations should be NAD27 or NAD83.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="LatDegree" type="xs:double">
+						<xs:annotation>
+							<xs:documentation>Latitude coordinate for the surface location of the feature (use center point for areas); values should be provided with at least 4 significant digits for sufficient precision (7 decimal places is recommended by the USGS (OFR 02-463, p. 6). Use decimal degrees.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="LongDegree" type="xs:double">
+						<xs:annotation>
+							<xs:documentation>Longitude coordinate for the surface location of the feature (use center point for areas); values should be provided with at least 4 significant digits for sufficient precision (7 decimal places is recommended by the USGS (OFR 02-463, p. 6). Use decimal degrees.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="SRS" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>The spatial reference system. It is recommended that an EPSG code be used to identify the SRS used to specify the location.  If an EPSG code is used, identify it as such with the prefix 'EPSG:' For common EPSG codes, see the Data Valid Terms tab. EPSG:4326 is the identifier for WGS84, and should be the text in this field. EPSG stands for European Petroleum Survey Group. EPSSG codes can be dereferenced by putting the code in this URL (replace 4326) http://spatialreference.org/ref/epsg/4326/.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="LocationUncertaintyStatement" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Information on how the original location was determined, e.g.: 1:250,000 map, gps unit, Google Earth, PLSS Conversion, Spatial Datum Conversion, e.g., NAD27 to WGS84.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="County" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Required. County name. If unknown or not applicable use 'missing'. If offshore, specify 'offshore' in this field.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="State" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Required. State name without abbreviations. If unknown or not applicable use 'missing'. For offshore locations, specify the governing or nearest state and list the county as 'offshore'.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="LocationKeyword" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Names of geographic features associated with the site that will be useful as search criteria to locate the information for this site. Separate multiple keywords with the pipe '|' character.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="VentElevation" type="xs:double">
+						<xs:annotation>
+							<xs:documentation>Elevation at ground level for the vent. If rim elevation varies, use highest peak. 3 decimal places is recommended by the USGS (OFR 02-463, p.6). Elevations should be reported relative to mean sea level (MSL).</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ElevationUOM" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Units used to report all elevation and depth information.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="RelatedFeature" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Names of geographic features associated with the site that will be useful as search criteria to locate the information for this site. Separate multiple keywords with the pipe '|' character.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="GeologicHistory" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Free text description of age or history of the vent.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="YoungestAge" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Youngest geologic age for material erupted from vent, e.g. Recent, Pleistocene, Miocene.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OldestAge" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Oldest geologic age for material erupted from vent, e.g. Recent, Pleistocene, Miocene.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="YoungestRadiometricAge_Ma" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Numerical value for the minimum radiometric age for material erupted from the vent expressed in Ma (million years); ex: 4.2.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OldestRadiometricAge_Ma" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Numerical value for the maximum radiometric age for material erupted from the vent expressed in Ma (million years); ex: 4.2.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="AgeUncertainty_Ma" type="xs:double" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Uncertainty of age readings in millions of years.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="AgeSource" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Source of the age dating. Short text explanation of source of information defining feature; may be author-date type citation, but should include some indication of how digital data originated. If unpublished data, provide researcher name, date and research institution for proper citation. Separate multiple citations with pipe '|' character.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="GeologicUnit" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Name of geologic unit that was erupted from the vent. Include hierarchy of names if the unit is part of a higher-rank geologic unit, e.g. groupName/Formation name, or Formation/Member, or Group/Formation/Member/Flow. Spell out unit names in full.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="MaterialComposition" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Volcanic material composition description' e.g. Basalt, Basaltic Andesite, Intermediate, Dacite, Rhyolite, Mixed. If multiple compositions (bimodal, etc) separate, compositions by pipe symbol '|'.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="FlowType" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Term describing eruptive style, e.g. pahoehoe, aa, block-and-ash.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Notes" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Any additional information to be provided, including description and other data not captured by the template, contact information for related parties (original collector, project PI), etc.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Source" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Mandatory. Short text explanation of source of information defining feature; may be author-date type citation, but should include some indication of how digital data originated. If unpublished data, provide researcher name, date and research institution for proper citation. Separate multiple citations with pipe '|' character.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Shape" type="gml:PointPropertyType">
+						<xs:annotation>
+							<xs:documentation>Added by GIS for WFS service; this element appears in the xml output, but is generated during service deployment from the latitude and longitude, therefore it doesn't appear in the template.</xs:documentation>
+						</xs:annotation>
+						</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
